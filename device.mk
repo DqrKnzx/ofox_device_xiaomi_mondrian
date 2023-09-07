@@ -59,9 +59,8 @@ AB_OTA_PARTITIONS ?= boot vendor_boot recovery vendor_dlkm dtbo vbmeta super
 PRODUCT_PACKAGES += update_engine \
     update_engine_client \
     update_verifier \
-    android.hardware.boot@1.2-impl-qti \
-    android.hardware.boot@1.2-impl-qti.recovery \
-    android.hardware.boot@1.2-service
+    bootctrl.taro.recovery \
+    android.hardware.boot@1.2-impl-qti.recovery
 
 PRODUCT_PACKAGES += \
   update_engine_sideload
