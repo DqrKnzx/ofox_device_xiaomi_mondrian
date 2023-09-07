@@ -1,2 +1,9 @@
+# ADB
+ro.adb.secure=0
+ro.boot.dynamic_partitions=true
+
+# Reset allocatable space
+ro.dynamic.full_size=9126805504
+
 # Battery Property
 ro.charger.enable_suspend=1

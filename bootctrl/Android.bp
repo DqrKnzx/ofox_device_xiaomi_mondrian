@@ -14,26 +14,15 @@
 // limitations under the License.
 //
 
-
 cc_library {
-    name: "libgptutils.xiaomi_taro",
-    vendor: true,
-    recovery_available: true,
-    shared_libs: [
-        "libcutils",
-        "liblog",
-        "libz",
-    ],
-    cflags: [
-        "-Wall",
-        "-Werror",
-        "-Wno-unused-parameter",
-        "-D_BSG_FRAMEWORK_KERNEL_HEADERS",
-    ],
-    srcs: [
-        "gpt-utils.cpp",
-        "recovery-ufs-bsg.cpp",
-    ],
-    owner: "qti",
-    export_include_dirs: ["."],
+    name: "bootctrl.taro",
+    defaults: ["bootctrl_hal_defaults"],
+    static_libs: ["libgptutils.xiaomi_taro"],
+}
+
+cc_library_shared {
+    name: "android.hardware.boot@1.2-impl-qti",
+    stem: "android.hardware.boot@1.0-impl-1.2-qti",
+    defaults: ["android.hardware.boot@1.2-impl-qti_defaults"],
+    static_libs: ["libgptutils.xiaomi_taro"],
 }

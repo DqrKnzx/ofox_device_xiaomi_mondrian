@@ -13,47 +13,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-#
-# Only the below variable(s) need to be changed!
-#
-# Identifier for common folder
-COMMON_SOC := sm84xx
 
-# Define hardware platform
-PRODUCT_PLATFORM := taro
+# Release name
+PRODUCT_RELEASE_NAME := mondrian
 
-#
-#
-#
-# The below variables will be generated automatically
-#
-#
-# Release name (automatically taken from this file's suffix)
-PRODUCT_RELEASE_NAME := $(lastword $(subst /, ,$(lastword $(subst _, ,$(firstword $(subst ., ,$(MAKEFILE_LIST)))))))
-
-# Custom vendor used in build tree (automatically taken from this file's prefix)
-CUSTOM_VENDOR := $(lastword $(subst /, ,$(firstword $(subst _, ,$(firstword $(MAKEFILE_LIST))))))
+# Device path for device tree
+DEVICE_PATH := device/xiaomi/mondrian
 
 # Inherit from our custom product configuration
-$(call inherit-product, vendor/$(CUSTOM_VENDOR)/config/common.mk)
+$(call inherit-product, vendor/twrp/config/common.mk)
 
-# OEM Info (automatically taken from device tree path)
-BOARD_VENDOR := $(or $(word 2,$(subst /, ,$(firstword $(MAKEFILE_LIST)))),$(value 2))
+# Inherit from hardware-specific part of the product configuration
+$(call inherit-product, device/xiaomi/mondrian/device.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := taro
-PRODUCT_NAME := twrp_$(PRODUCT_RELEASE_NAME)
+PRODUCT_DEVICE := mondrian
+PRODUCT_NAME := twrp_mondrian
 PRODUCT_BRAND := POCO
 PRODUCT_MODEL := Poco F5 Pro
 PRODUCT_MANUFACTURER := Xiaomi
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
-
-# Common path for device trees
-COMMON_PATH := device/$(PRODUCT_BRAND)/$(COMMON_SOC)-common
-
-# Device path for OEM device tree
-DEVICE_PATH := device/$(PRODUCT_BRAND)/$(PRODUCT_DEVICE)
-
-# Inherit from hardware-specific part of the product configuration
-$(call inherit-product, $(DEVICE_PATH)/device-$(PRODUCT_DEVICE).mk)
